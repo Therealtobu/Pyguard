@@ -1,0 +1,11 @@
+# ─── railway.toml ─────────────────────────────────────────────────────────────
+[build]
+# Dùng Dockerfile thay vì Nixpacks để kiểm soát gcc/openssl
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "python bot.py"
+# Không cần healthcheck vì đây là worker (không có HTTP)
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5
